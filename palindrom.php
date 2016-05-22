@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Palindrom - определяет является ли строка текста палиндромом
  *
  * Дана строка текста.
@@ -18,6 +18,11 @@
 class Palindrom 
 {
 
+    /**
+     * Поиск палиндрома в строке
+     * @param string $word
+     * @return string
+    */
     public function doFind($word)
     {
         $word = mb_strtolower(str_replace(' ', '', $word), 'utf8');
@@ -51,22 +56,24 @@ class Palindrom
         return $result;
     }
 
+    /**
+     * Определяет является ли строка палиндромом
+     * @param string $word
+     * @return string
+    */
     protected function isPalindrom($word)
     {
         return $word == $this->reverseStr($word);
     }
 
+    /**
+     * Возвращает перевернутую строку (работает с utf)
+     * @param string $word
+     * @return string
+    */
     protected function reverseStr($word)
     {
         preg_match_all('/./us', $word, $ar);
         return join('', array_reverse($ar[0]));
     }
 }
-
-
-//GO
-$Palindrom = new Palindrom();
-echo $Palindrom->doFind('Аргентина манит негра');           // аргентинаманитнегра
-echo $Palindrom->doFind('А роза упала на лапу Азора');      // арозаупаланалапуазора
-echo $Palindrom->doFind('фывафыв ина манит негра фываргентина маит негрфыва');   // инамани
-echo $Palindrom->doFind('палиндром');   // п
